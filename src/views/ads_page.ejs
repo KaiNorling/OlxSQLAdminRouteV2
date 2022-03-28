@@ -1,0 +1,68 @@
+<%- include('parts/header') %> <% var error%><%var ads =ads||{}%><% var user =
+user || "" %>
+<style>
+    img {
+        max-width: 100%;
+    }
+</style>
+<section class="my-4 py-4">
+    <div class="container">
+        <h1 class="text-center"><%= ads.ads_title%></h1>
+
+        <div class="card mb-3 mt-4">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img
+                        src="/uploads/<%= ads.ads_photo%>"
+                        class="img-fluid rounded-start"
+                        alt="..."
+                    />
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Xususiyat</th>
+                                    <th>Qiymat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Kategoriya</td>
+                                    <td><%= ads["category.category_name"]%></td>
+                                </tr>
+                                <tr>
+                                    <td>Narxi</td>
+                                    <td><%=ads.ads_price %> so'm</td>
+                                </tr>
+                                <tr>
+                                    <td>Egasi</td>
+                                    <td>
+                                        <a href="/users/<%= ads.user_id%>"
+                                            ><%= ads["user.user_name"]%></a
+                                        >
+                                        <span><%= ads.ads_phone%></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ta'rifi</td>
+                                    <td><%= ads.ads_description%></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <% if(user.user_id === ads.user_id) {%>
+                        <a
+                            href="/ads/delete/<%= ads.ads_id%>"
+                            class="w-100 d-block btn btn-danger"
+                            >Delete</a
+                        >
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('parts/footer') %>
